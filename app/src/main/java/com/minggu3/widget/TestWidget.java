@@ -3,21 +3,33 @@ package com.minggu3.widget;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
-/**
- * Implementation of App Widget functionality.
- */
+import java.text.DateFormat;
+import java.util.Date;
+
 public class TestWidget extends AppWidgetProvider {
+    private static final String sharedProfile = "com.minggu3.widget";
+    private static final String COUNT_KEY = "count";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-//        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        SharedPreferences preferences = context.getSharedPreferences(sharedProfile, 0);
+        int count = preferences.getInt(COUNT_KEY + appWidgetId, 0);
+
+        String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.test_widget);
         views.setTextViewText(R.id.widgetID, String.valueOf(appWidgetId));
+        views.setTextViewText(R.id.widgetUpdate, dateString);
+        views.setTextViewText(R.id.widgetCount, String.valueOf(count));
 
+        SharedPreferences.Editor prefEditor = preferences.edit();
+        prefEditor.putInt(COUNT_KEY + appWidgetId, count);
+        prefEditor.apply();
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
