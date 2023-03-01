@@ -8,4 +8,5 @@
     <string name="widget_name">Widget One</string>
     <string name="widgetLabel_id">Widget ID: </string>
     <string name="widgetLabel_update">Last Updated: </string>
+    <string name="update_btn">Update</string>
 </resources>
