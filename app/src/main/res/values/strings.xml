@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">minggu3 widget</string>
+    <string name="appwidget_text">THE WIDGET</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="test">Test</string>
+
+    <string name="widget_name">Widget One</string>
+    <string name="widgetLabel_id">Widget ID: </string>
+</resources>
